@@ -20,6 +20,11 @@ if (isset($_GET['id'])) {
         $response['email'] = $row['email'];
         $response['description'] = $row['description'];
         $response['address'] = $row['address'];
+        $response['rating'] = $row['rating'];
+        $response['services'] = $row['services'];
+        $response['experience'] = $row['experience'];
+        $response['age'] = $row['age'];
+        $response['status'] = $row['status'];
 
         header('Content-Type: application/json');
         http_response_code(200);

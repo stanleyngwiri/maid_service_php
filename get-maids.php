@@ -18,6 +18,11 @@ if ($result->num_rows > 0) {
         $rowData['email'] = $row['email'];
         $rowData['description'] = $row['description'];
         $rowData['address'] = $row['address'];
+        $rowData['rating'] = $row['rating'];
+        $rowData['services'] = $row['services'];
+        $rowData['experience'] = $row['experience'];
+        $rowData['age'] = $row['age'];
+        $rowData['status'] = $row['status'];
 
         array_push($response, $rowData);
     }
