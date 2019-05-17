@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: pta
- * Date: 6/6/16
- * Time: 9:40 AM
+ * User: stanley
+ * Date: 20/4/19
+ * Time: 11:45 AM
+ * available APIs
+    *1 . http://51.15.233.87/maids/add-maid.php
+    *2 . http://51.15.233.87/maids/get-maid.php
+    *3 . http://51.15.233.87/maids/get-maids.php
  */
 function connect()
 {
