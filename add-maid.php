@@ -1,15 +1,30 @@
 <?php
 require_once "connect.php";
 
+// required headers
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+
+// get posted data
+$data = json_decode(file_get_contents("php://input"));
+
 $response = array();
 
-if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['msisdn'])) {
+if (
+    !empty($data->name) &&
+    !empty($data->email) &&
+    !empty($data->msisdn)
+) {
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $msisdn = $_POST['msisdn'];
-    $description = $_POST['description'];
-    $address = $_POST['address'];
+    $name = $data->name;
+    $email = $data->email;
+    $msisdn = $data->msisdn;
+    $description = $data->description;
+    $address = $data->address;
 
     $conn = connect();
 
@@ -23,6 +38,7 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['msisdn'])) 
         $response["message"] = "Maid successfully Added.";
 
         // echoing JSON response
+        http_response_code(201);
         echo json_encode($response);
     } else {
         // failed to insert row
@@ -30,10 +46,12 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['msisdn'])) 
         $response["message"] = "Error: " . $sql . "<br>" . $conn->error;
 
         // echoing JSON response
+
+        http_response_code(500);
         echo json_encode($response);
     }
 } else {
-    // failed to insert row
+    // invalid data
     $response["success"] = 0;
     $response["message"] = "Missing Fields.";
 
@@ -41,5 +59,6 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['msisdn'])) 
 
 
     // echoing JSON response
+    http_response_code(400);
     echo json_encode($response);
 }
