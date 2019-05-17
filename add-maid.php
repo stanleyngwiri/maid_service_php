@@ -17,7 +17,8 @@ $response = array();
 if (
     !empty($data->name) &&
     !empty($data->email) &&
-    !empty($data->msisdn)
+    !empty($data->msisdn) &&
+    !empty($data->services)
 ) {
 
     $name = $data->name;
@@ -25,12 +26,17 @@ if (
     $msisdn = $data->msisdn;
     $description = $data->description;
     $address = $data->address;
+    $rating = $data->rating;
+    $services = $data->services;
+    $experience = $data->experience;
+    $age = $data->age;
+    $status = $data->status;
 
     $conn = connect();
 
     // insert maid logic
-    $sql = "INSERT INTO maids (name, email, msisdn, description, address)
-      VALUES ('$name', '$email', '$msisdn', '$description', '$address')";
+    $sql = "INSERT INTO maids (name, email, msisdn, description, address, rating, services, experience, age, status)
+      VALUES ('$name', '$email', '$msisdn', '$description', '$address', '$rating', '$services', '$experience', '$age', '$status')";
 
     if ($conn->query($sql) === TRUE) {
         // successfully inserted into database
