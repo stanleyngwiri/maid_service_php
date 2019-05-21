@@ -8,9 +8,13 @@ $conn = connect();
 
 $result = $conn->query($sql);
 
-$response = array();
+
 
 if ($result->num_rows > 0) {
+
+  $response = array();
+  $response["records"] = array();
+
     while ($row = $result->fetch_assoc()) {
         $rowData['id'] = $row['id'];
         $rowData['name'] = $row['name'];
@@ -24,7 +28,7 @@ if ($result->num_rows > 0) {
         $rowData['age'] = $row['age'];
         $rowData['status'] = $row['status'];
 
-        array_push($response, $rowData);
+        array_push($response["records"], $rowData);
     }
 
     header('Content-Type: application/json');
