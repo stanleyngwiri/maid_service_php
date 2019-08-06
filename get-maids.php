@@ -2,7 +2,7 @@
 require_once "connect.php";
 
 
-$sql = "SELECT * FROM maids";
+$sql = "SELECT * FROM maids ORDER BY id ASC";
 
 $conn = connect();
 
